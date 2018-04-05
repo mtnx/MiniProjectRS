@@ -1,0 +1,58 @@
+syntax="proto3";
+
+import "google/protobuf/empty.proto";
+
+package grpc;
+
+message AddObatReq{
+
+    string KodeObat = 1;
+    string NamaObat =2;
+    string TanggalKadaluwarsa=3;
+    int64 Harga=4;
+    string CreatedBy = 5;
+    string CreatedOn=6;
+    string UpdateBy=7;
+    string UpdateOn = 8;
+    int32 Status = 9;
+}
+
+message ReadObatByNamaReq{
+    string NamaObat = 2;
+}
+
+message ReadObatByNamaResp{
+    string KodeObat = 1;
+    string NamaObat =2;
+    string TanggalKadaluwarsa=3;
+    int64 Harga=4;
+    string CreatedBy = 5;
+    string CreatedOn=6;
+    string UpdateBy=7;
+    string UpdateOn = 8;
+    int32 Status = 9;
+}
+
+message ReadObatResp{
+    repeated ReadObatByNamaResp allObat = 1;
+}
+
+message UpdateObatReq{
+    string KodeObat = 1;
+    string NamaObat =2;
+    string TanggalKadaluwarsa=3;
+    int64 Harga=4;
+    string CreatedBy = 5;
+    string CreatedOn=6;
+    string UpdateBy=7;
+    string UpdateOn = 8;
+    int32 Status = 9;
+}
+}
+
+service ObatService{
+    rpc AddObat(AddObatReq) returns (google.protobuf.Empty) {};
+    rpc ReadObatByNama(ReadObatByNamaReq) returns (ReadObatByNamaResp) {};
+    rpc ReadObat(google.protobuf.Empty) returns (ReadObatResp){};
+    rpc UpdateObat(UpdateObatReq) returns (google.protobuf.Empty){};
+}

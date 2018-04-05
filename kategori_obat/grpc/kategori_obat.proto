@@ -1,0 +1,58 @@
+syntax="proto3";
+
+import "google/protobuf/empty.proto";
+
+package grpc;
+
+message AddKategoriObatReq{
+
+    string KodeKategoriObat = 1;
+    string NamaKategoriObat =2;
+    string Deskripsi=3;
+    string KodeObat=4;
+    string CreatedBy = 5;
+    string CreatedOn=6;
+    string UpdateBy=7;
+    string UpdateOn = 8;
+    int32 Status = 9;
+}
+
+message ReadKategoriObatByNamaReq{
+    string NamaKategoriObat = 2;
+}
+
+message ReadKategoriObatByNamaResp{
+    string KodeKategoriObat = 1;
+    string NamaKategoriObat =2;
+    string Deskripsi=3;
+    string KodeObat=4;
+    string CreatedBy = 5;
+    string CreatedOn=6;
+    string UpdateBy=7;
+    string UpdateOn = 8;
+    int32 Status = 9;
+}
+
+message ReadKategoriObatResp{
+    repeated ReadKategoriObatByNamaResp allKategoriObat = 1;
+}
+
+message UpdateKategoriObatReq{
+    string KodeKategoriObat = 1;
+    string NamaKategoriObat =2;
+    string Deskripsi=3;
+    string KodeObat=4;
+    string CreatedBy = 5;
+    string CreatedOn=6;
+    string UpdateBy=7;
+    string UpdateOn = 8;
+    int32 Status = 9;
+}
+
+
+service KategoriObatService{
+    rpc AddKategoriObat(AddKategoriObatReq) returns (google.protobuf.Empty) {};
+    rpc ReadKategoriObatByNama(ReadKategoriObatByNamaReq) returns (ReadKategoriObatByNamaResp) {};
+    rpc ReadKategoriObat(google.protobuf.Empty) returns (ReadKategoriObatResp){};
+    rpc UpdateKategoriObat(UpdateKategoriObatReq) returns (google.protobuf.Empty){};
+}

@@ -1,0 +1,55 @@
+syntax="proto3";
+
+import "google/protobuf/empty.proto";
+
+package grpc;
+
+message AddSupplierReq{
+
+    string KodeSupplier = 1;
+    string NamaSupplier =2;
+    string JenisSupplier=3;
+    string CreatedBy = 4;
+    string CreatedOn=5;
+    string UpdateBy=6;
+    string UpdateOn = 7;
+    int32 Status = 8;
+}
+
+message ReadSupplierByNamaReq{
+    string NamaSupplier = 2;
+}
+
+message ReadSupplierByNamaResp{
+    string KodeSupplier = 1;
+    string NamaSupplier =2;
+    string JenisSupplier=3;
+    string CreatedBy = 4;
+    string CreatedOn=5;
+    string UpdateBy=6;
+    string UpdateOn = 7;
+    int32 Status = 8;
+}
+
+message ReadSupplierResp{
+    repeated ReadSupplierByNamaResp allSupplier = 2;
+}
+
+message UpdateSupplierReq{
+    string KodeSupplier = 1;
+    string NamaSupplier =2;
+    string JenisSupplier=3;
+    string CreatedBy = 4;
+    string CreatedOn=5;
+    string UpdateBy=6;
+    string UpdateOn = 7;
+    int32 Status = 8;
+}
+
+
+service SupplierService{
+    rpc AddSupplier(AddSupplierReq) returns (google.protobuf.Empty) {};
+    rpc ReadSupplierByNama(ReadSupplierByNamaReq) returns (ReadSupplierByNamaResp) {};
+    rpc ReadSupplier(google.protobuf.Empty) returns (ReadSupplierResp){};
+    rpc UpdateSupplier(UpdateSupplierReq) returns (google.protobuf.Empty){};
+}
